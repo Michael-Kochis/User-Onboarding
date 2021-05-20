@@ -13,7 +13,7 @@ function NewUserForm(props) {
     
     const [form, setForm] = useState(initialData);
     const [disabled, setDisabled] = useState(true);
-    const { setUsers, users } = props;
+    const { checkSchema, setUsers, users } = props;
 
     function submit(event) {
         const newUser = {
@@ -41,6 +41,7 @@ function NewUserForm(props) {
         setForm({...form, [name]: updateData}); 
         schema.isValid(form)
             .then(valid => setDisabled(!valid));
+        checkSchema(name, updateData);
     }
 
     function userMatch(obj) {

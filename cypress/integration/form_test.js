@@ -54,5 +54,29 @@ describe('default tests', () => {
         })
     })
 
+    it('check for error if field(s) left empty', () => {
+        it('username is required', () => {
+            nameInput().type('Avalon')
+            nameInput().type('')
+            cy.get('User name is required.').should('exist')
+        })   
+
+        it('email is required', () => {
+            emailInput().type('Avalon')
+            emailInput().type('')
+            cy.get('email address is required.').should('exist')
+        })        
+
+        it('password is required', () => {
+            pwInput().type('Avalon')
+            pwInput().type('')
+            cy.get('You must enter a password.').should('exist')
+        })    
+        
+        it('submit button should be disabled', () => {
+            submitButton().should('be.disabled')
+        })
+    })
+
     
 })
